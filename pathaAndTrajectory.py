@@ -10,20 +10,25 @@ import numpy as np
 import spatialmath.base as smb
 import spatialmath as sm
 import matplotlib.pyplot as plt
+# 0:45
 T0 = np.identity(4)
 
-T1 = np.matmul(smb.transl(1,2,3), smb.rpy2tr(0.6, 0.8, 1.4, order = 'xyz'))
+T1 = np.matmul(smb.transl(1,1,1), smb.rpy2tr(0.1, 0.1, 0.1, order = 'xyz'))
 
+# 1:36
 smb.trplot(T0)
 plt.show()
 
+# 1:39
 smb.trplot(T1)
 plt.show()
 
+# 1:53
 T0 = sm.SE3(T0)
 T1 = sm.SE3(T1)
 traj = rtb.ctraj(T0, T1, t=100)
 smb.tranimate(traj)
+smb.tranimate(smb.transl(4, 3, 4)@smb.trotx(2)@smb.troty(-2), frame='A', arrow=False, dims=[0, 5], nframes=200)
 
 
 # print(rtb.tools.trajectory.quintic(0, 1, 50).s, "\n")
