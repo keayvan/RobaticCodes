@@ -10,79 +10,65 @@ import numpy as np
 import spatialmath.base as smb
 import spatialmath as sm
 import matplotlib.pyplot as plt
-# 0:45
-T0 = np.identity(4)
+## 0:45
+# T0 = np.identity(4)
 
-T1 = np.matmul(smb.transl(1,1,1), smb.rpy2tr(0.1, 0.1, 0.1, order = 'xyz'))
+# T1 = np.matmul(smb.transl(1,1,1), smb.rpy2tr(0.1, 0.1, 0.1, order = 'xyz'))
 
-# 1:36
-smb.trplot(T0)
-plt.show()
+# # 1:36
+# smb.trplot(T0)
+# plt.show()
 
-# 1:39
-smb.trplot(T1)
-plt.show()
+# # 1:39
+# smb.trplot(T1)
+# plt.show()
 
-# 1:53
-T0 = sm.SE3(T0)
-T1 = sm.SE3(T1)
-traj = rtb.ctraj(T0, T1, t=100)
-smb.tranimate(traj)
-smb.tranimate(smb.transl(4, 3, 4)@smb.trotx(2)@smb.troty(-2), frame='A', arrow=False, dims=[0, 5], nframes=200)
+# # 1:53
+# T0 = sm.SE3(T0)
+# T1 = sm.SE3(T1)
+# traj = rtb.ctraj(T0, T1, t=100)
+# smb.tranimate(traj)
 
-
-# print(rtb.tools.trajectory.quintic(0, 1, 50).s, "\n")
-# rtb.tools.trajectory.quintic(0, 1, 50).plot()
-
-# print(rtb.tools.trajectory.quintic(0, -1, 50).s, "\n")
-# rtb.tools.trajectory.quintic(0, -1, 50).plot()
+# ### 1D polynominal trajectory
 
 # tg = rtb.tools.trajectory.quintic(0, 1, 50)
+# tg.plot()
+# s , sd, sdd = tg.s , tg.sd, tg.sdd
 
-# print(tg.s, "\n")
-# print(tg.sd, "\n")
-# print(tg.sdd, "\n")
-
-# print(rtb.tools.trajectory.quintic(0, 1, 50, 0.5, 0).s)
-# rtb.tools.trajectory.quintic(0, 1, 50, 0.5, 0).plot()
-
-# print(rtb.tools.trajectory.trapezoidal(0, 1, 50).s, "\n")
-# rtb.tools.trajectory.trapezoidal(0, 1, 50).plot()
+# # print(rtb.tools.trajectory.quintic(0, -1, 50).s, "\n")
+# # rtb.tools.trajectory.quintic(0, -1, 50).plot()
 
 
-# print(rtb.tools.trajectory.trapezoidal(0, -1, 50).s, "\n")
-# rtb.tools.trajectory.trapezoidal(0, -1, 50).plot()
 
-# tg = rtb.tools.trajectory.trapezoidal(0, 1, 50)
-# print(tg.s)
-# print(tg.sd, "\n")
-# print(tg.sdd, "\n")
+# tg_v = rtb.tools.trajectory.quintic(0, 1, 50, 0.5, 0)
+# sv, sv_d, sv_dd = tg_v.s, tg_v.sd, tg_v.sdd
+# tg_v.plot()
+# ### 1D trapezodial trajectory
+# tg_trp= rtb.tools.trajectory.trapezoidal(0, 1, 50,0.035)
+# s_trp,sd_trp,sdd_trp = tg_trp.s, tg_trp.sd, tg_trp.sdd
+# tg_trp.plot()
 
 
-# print(rtb.tools.trajectory.trapezoidal(0, 1, 50,0.025).sd, "\n")
-# rtb.tools.trajectory.trapezoidal(0, 1, 50, 0.025).plot()
 
-# print(rtb.tools.trajectory.trapezoidal(0, 1, 50, 0.035).sd, "\n")
-# rtb.tools.trajectory.trapezoidal(0, 1, 50, 0.035).plot()
+
+### ### 1D trajectory with via points
 
 # first = 10
-
 # last = 30
-
 # via = np.asarray([[40],[10],[last]])
 
-# # traj = rtb.mstraj(via, 0.1,2,qdmax=1,q0 = first)
-# # plt.plot(traj.q)
-# # plt.show()
-# # traj = rtb.mstraj(via, 0.1, 4, qdmax = 1, q0 = first)
-# # plt.plot(traj.q)
-# # plt.show()
-# # traj = rtb.mstraj(via, 0.1, 8, qdmax = 1, q0 = first)
-# # plt.plot(traj.q)
-# # plt.show()
-# # traj = rtb.mstraj(via, 0.1, 0, qdmax = 1, q0 = first)
-# # plt.plot(traj.q)
-# # plt.show()
+# traj = rtb.mstraj(via, 0.1,2,qdmax=1,q0 = first)
+# plt.plot(traj.q)
+# plt.show()
+# traj = rtb.mstraj(via, 0.1, 4, qdmax = 1, q0 = first)
+# plt.plot(traj.q)
+# plt.show()
+# traj = rtb.mstraj(via, 0.1, 8, qdmax = 1, q0 = first)
+# plt.plot(traj.q)
+# plt.show()
+# traj = rtb.mstraj(via, 0.1, 0, qdmax = 1, q0 = first)
+# plt.plot(traj.q)
+# plt.show()
 
 # traj = rtb.mstraj(via, 0.1, 4, qdmax = 1, q0 = first)
 # plt.plot(traj.q)
@@ -93,7 +79,7 @@ smb.tranimate(smb.transl(4, 3, 4)@smb.trotx(2)@smb.troty(-2), frame='A', arrow=F
 
 # traj = rtb.mstraj(via,0.1,4, tsegment=[10,20,30], q0=first)
 
-#############Multi Dimentional####################
+###Multi Dimentional###
 
 # first = [10 , 20]
 # last = [30 , 10]
@@ -153,14 +139,14 @@ smb.tranimate(smb.transl(4, 3, 4)@smb.trotx(2)@smb.troty(-2), frame='A', arrow=F
 # print(smb.q2r(smb.qslerp(q1, q2, 0.5)))
 
 ############Interpolating pose in 3D ####
-T0 = sm.SE3()
+# T0 = sm.SE3()
 
-T1 = sm.SE3.Trans(1, 2, 3) * sm.SE3.RPY(0.6, 0.8, 1.4)
+# T1 = sm.SE3.Trans(1, 2, 3) * sm.SE3.RPY(0.6, 0.8, 1.4)
 
-T = rtb.ctraj(T0, T1, 50)
+# T = rtb.ctraj(T0, T1, 50)
 
-print(T[0], "\n")
+# print(T[0], "\n")
 
-print(T[10])
+# print(T[10])
 
-smb.tranimate(T)
+# smb.tranimate(T)
